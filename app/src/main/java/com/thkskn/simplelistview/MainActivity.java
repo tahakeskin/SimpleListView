@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.google.android.gms.ads.*;
 
 
 public class MainActivity extends Activity {
@@ -41,5 +42,15 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this,String.valueOf(position+1)+"."+select,Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Java code required.
+        // testDevices and loadAdOnCreate attributes are
+        // no longer available.
+        AdView adView = (AdView)this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("TEST_DEVICE_ID")
+                .build();
+        adView.loadAd(adRequest);
     }
 }
